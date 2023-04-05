@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GameState } from './gamestate';
+import { PlayerState } from './player.state';
 import { Store } from '@ngrx/store';
 import { setPlayerName } from './actions';
 @Component({
@@ -10,7 +10,7 @@ import { setPlayerName } from './actions';
 export class AppComponent {
   title = 'ngrx-hangman';
 
-  constructor(private store: Store<GameState>) {
+  constructor(private store: Store<PlayerState>) {
     this.store.dispatch(setPlayerName({ playerName: 'dogbiscuit' }));
   }
 }

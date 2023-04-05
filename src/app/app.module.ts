@@ -6,7 +6,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 
-import { gameReducer } from '../app/game.reducer';
+import { playerReducer } from '../app/player.reducer';
 import { ScoreBoardComponent } from './components/score-board/score-board.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -25,7 +25,7 @@ import { MatListModule } from '@angular/material/list';
     MatFormFieldModule,
     MatInputModule,
     MatListModule,
-    StoreModule.forRoot({ game: gameReducer }, {}),
+    StoreModule.forRoot({ player: playerReducer }, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],

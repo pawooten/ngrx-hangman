@@ -1,6 +1,6 @@
 import { RecordScore } from "./RecordScore";
 
-export interface GameState {
+export interface PlayerState {
   playerName: string,
   highScore: RecordScore | undefined;
 }
