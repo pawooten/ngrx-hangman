@@ -11,7 +11,9 @@ export const gameReducer = createReducer(
   initialState,
   on(newGame, (state) => initialState),
   on(setPlayerName, (state, action) => {
-    state.playerName = action.playerName;
-    return state;
+    return {
+      playerName: action.playerName,
+      highScore: state.highScore
+    };
   })
 );
