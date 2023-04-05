@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { PlayerState } from 'src/app/player.state';
-import { selectGameRecord } from 'src/app/player.selectors';
+import { selectGameRecord, selectPlayerName } from 'src/app/player.selectors';
 import { AppState } from 'src/app/app.state';
 import { RecordScore } from 'src/app/RecordScore';
 import { map } from 'rxjs/operators';
@@ -14,12 +14,16 @@ import { map } from 'rxjs/operators';
 })
 export class ScoreBoardComponent {
   gameRecord$: Observable<string>;
+  playerName$: Observable<string>;
 
   constructor(private store: Store<AppState>) {
     this.gameRecord$ = store.pipe(
         select(selectGameRecord),
         map(this.formatGameRecord)
       );
+    this.playerName$ = store.pipe(
+      select(selectPlayerName)
+    );
   }
 
   private formatGameRecord(record: RecordScore | undefined) : string {
