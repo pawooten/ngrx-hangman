@@ -5,8 +5,6 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 
-import { playerReducer } from '../app/player.reducer';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,6 +16,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ScoreBoardComponent } from './components/score-board/score-board.component';
 import { LetterPanelComponent } from './components/letter-panel/letter-panel.component';
+
+import { playerReducer } from '../app/player.reducer';
+import { letterReducer } from '../app/letter.reducer';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { LetterPanelComponent } from './components/letter-panel/letter-panel.com
     MatInputModule,
     MatListModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({ player: playerReducer }, {}),
+    StoreModule.forRoot({ player: playerReducer, letters: letterReducer }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],

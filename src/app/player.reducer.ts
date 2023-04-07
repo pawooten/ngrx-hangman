@@ -2,7 +2,7 @@ import { createReducer, on } from "@ngrx/store";
 import { newGame, setPlayerName } from "./actions";
 import { PlayerState } from "./player.state";
 
-export const initialState: PlayerState = {
+const initialState: PlayerState = {
   playerName: '',
   highScore: { playerName: 'Paul', wordLength: 8, time: 30 }
 };

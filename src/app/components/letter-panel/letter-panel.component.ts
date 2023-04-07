@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { guessLetter } from 'src/app/actions';
+import { AppState } from 'src/app/app.state';
 
 @Component({
   selector: 'app-letter-panel',
@@ -14,8 +17,11 @@ export class LetterPanelComponent {
 
   readonly rowCss = [ '', 'ngrx-hangman__letter-panel-second-row', 'ngrx-hangman__letter-panel-third-row'];
 
-  onLetterClicked(event: any, args: any) {
+  constructor(private store: Store<AppState>) {}
+
+  onLetterClicked(event: any, letter: string) {
+    // TODO probably not legit for NgRx since a browser refresh could restore the Store but not the state of the material button components.
     event.currentTarget.disabled = true;
-    console.log(args);
+    this.store.dispatch(guessLetter({ letter }));
   }
 }
