@@ -11,6 +11,6 @@ export class AppComponent {
   title = 'ngrx-hangman';
 
   constructor(private store: Store<PlayerState>) {
-    this.store.dispatch(setPlayerName({ playerName: 'dogbiscuit' }));
+    setTimeout(() => this.store.dispatch(setPlayerName({ playerName: 'dogbiscuit' })), 4000);
   }
 }
