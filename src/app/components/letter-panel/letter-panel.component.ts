@@ -6,9 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./letter-panel.component.css']
 })
 export class LetterPanelComponent {
-  letters = [
+  readonly letters = [
     'QWERTYUIOP'.split(''),
     'ASDFGHJKL'.split(''),
     'ZXCVBNM'.split('')
   ];
+
+  readonly rowCss = [ '', 'ngrx-hangman__letter-panel-second-row', 'ngrx-hangman__letter-panel-third-row'];
 }

@@ -1,5 +1,9 @@
-<mat-grid-list rows="3" cols="1" rowHeight="fit">
-  <mat-grid-list *ngFor="let rowLetters of letters" cols="{{rowLetters.length}}">
-    <mat-grid-tile *ngFor="let firstRowLetter of rowLetters">{{firstRowLetter}}</mat-grid-tile>
+<mat-grid-list rows="3" cols="1" class="ngrx-hangman__letter-panel-outer-list">
+  <mat-grid-list *ngFor="let rowLetters of letters; index as rowIndex" cols="{{rowLetters.length}}" [ngClass]="rowCss[rowIndex]">
+    <mat-grid-tile *ngFor="let firstRowLetter of rowLetters">
+      <button mat-fab>
+        {{firstRowLetter}}
+      </button>
+    </mat-grid-tile>
   </mat-grid-list>
 </mat-grid-list>
