@@ -13,4 +13,9 @@ export class LetterPanelComponent {
   ];
 
   readonly rowCss = [ '', 'ngrx-hangman__letter-panel-second-row', 'ngrx-hangman__letter-panel-third-row'];
+
+  onLetterClicked(event: any, args: any) {
+    event.currentTarget.disabled = true;
+    console.log(args);
+  }
 }

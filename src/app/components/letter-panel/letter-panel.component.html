@@ -1,7 +1,7 @@
 <mat-grid-list rows="3" cols="1" class="ngrx-hangman__letter-panel-outer-list">
   <mat-grid-list *ngFor="let rowLetters of letters; index as rowIndex" cols="{{rowLetters.length}}" [ngClass]="rowCss[rowIndex]">
     <mat-grid-tile *ngFor="let firstRowLetter of rowLetters">
-      <button mat-fab>
+      <button mat-fab (click)="onLetterClicked($event, firstRowLetter)">
         {{firstRowLetter}}
       </button>
     </mat-grid-tile>
