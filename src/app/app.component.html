@@ -1,2 +1,10 @@
-<!-- <app-score-board></app-score-board> -->
-<app-letter-panel></app-letter-panel>
+<div>
+  <mat-grid-list rows="20" cols="1" rowHeight="5vh">
+    <mat-grid-tile [rowspan]="8">
+      <app-score-board></app-score-board>
+    </mat-grid-tile>
+    <mat-grid-tile [rowspan]="12">
+      <app-letter-panel></app-letter-panel>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
