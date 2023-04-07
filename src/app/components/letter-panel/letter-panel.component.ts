@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { guessLetter } from 'src/app/actions';
-import { AppState } from 'src/app/app.state';
+import { AppState } from 'src/app/state/app.state';
 
 @Component({
   selector: 'app-letter-panel',

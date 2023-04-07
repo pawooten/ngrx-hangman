@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
-import { newGame, setPlayerName } from "./actions";
-import { PlayerState } from "./player.state";
+import { newGame, setPlayerName } from "../actions";
+import { PlayerState } from "../state/player.state";
 
 const initialState: PlayerState = {
   playerName: '',

@@ -17,8 +17,8 @@ import { AppComponent } from './app.component';
 import { ScoreBoardComponent } from './components/score-board/score-board.component';
 import { LetterPanelComponent } from './components/letter-panel/letter-panel.component';
 
-import { playerReducer } from '../app/player.reducer';
-import { letterReducer } from '../app/letter.reducer';
+import { playerReducer } from './reducers/player.reducer';
+import { letterReducer } from './reducers/letter.reducer';
 
 @NgModule({
   declarations: [

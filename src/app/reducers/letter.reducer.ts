@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
-import { LetterState } from "./letter.state";
-import { newGame, guessLetter } from "./actions";
+import { LetterState } from "../state/letter.state";
+import { newGame, guessLetter } from "../actions";
 
 const initialState: LetterState = {
   guessedLetters: []

@@ -1,4 +1,4 @@
-import { RecordScore } from "./RecordScore";
+import { RecordScore } from "../RecordScore";
 
 export interface PlayerState {
   playerName: string,

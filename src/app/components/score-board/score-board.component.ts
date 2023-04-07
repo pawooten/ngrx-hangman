@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { PlayerState } from 'src/app/player.state';
-import { selectGameRecord, selectPlayerName } from 'src/app/player.selectors';
-import { AppState } from 'src/app/app.state';
+import { PlayerState } from 'src/app/state/player.state';
+import { selectGameRecord, selectPlayerName } from 'src/app/selectors/player.selectors';
+import { AppState } from 'src/app/state/app.state';
 import { RecordScore } from 'src/app/RecordScore';
 import { map, tap } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';

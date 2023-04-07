@@ -1,6 +1,6 @@
 import { createSelector } from "@ngrx/store";
-import { AppState } from "./app.state";
-import { PlayerState } from "./player.state";
+import { AppState } from "../state/app.state";
+import { PlayerState } from "../state/player.state";
 
 const playerStateSelector = (state: AppState) => state.player;
 export const selectGameRecord = createSelector(
