@@ -1,5 +1,17 @@
-div {
-  width: 100%;
-  height: 100%;
-  background-color: aquamarine;;
+.game-canvas__wrapper {
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.game-canvas__wrapper-centered {
+  width:422px; height:427px;
+}
+.game-canvas__wrapper-centered-wrapper {
+  width: 100%; height: 100%;
+  position: relative;
+}
+img, canvas {
+  width: 100%; height: 100%;
+  position: absolute; top:0px; left:0px;
 }
