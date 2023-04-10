@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Component, OnDestroy } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Subscription } from 'rxjs';
 import { guessLetter } from 'src/app/actions';
+import { selectGuessedLetters } from 'src/app/selectors/letter.selector';
 import { AppState } from 'src/app/state/app.state';
 
 @Component({
@@ -8,7 +10,7 @@ import { AppState } from 'src/app/state/app.state';
   templateUrl: './letter-panel.component.html',
   styleUrls: ['./letter-panel.component.css']
 })
-export class LetterPanelComponent {
+export class LetterPanelComponent implements OnDestroy {
   readonly letters = [
     'QWERTYUIOP'.split(''),
     'ASDFGHJKL'.split(''),
@@ -17,11 +19,26 @@ export class LetterPanelComponent {
 
   readonly rowCss = [ '', 'ngrx-hangman__letter-panel-second-row', 'ngrx-hangman__letter-panel-third-row'];
 
-  constructor(private store: Store<AppState>) {}
+  readonly guessedLettersSubscription: Subscription;
+
+  private disabledLetters = new Set<string>();
+
+  constructor(private store: Store<AppState>) {
+    this.guessedLettersSubscription = this.store.pipe(
+      select(selectGuessedLetters),
+      ).subscribe((guessedLetters) => {
+        this.disabledLetters = new Set<string>(guessedLetters);
+      });
+  }
 
   onLetterClicked(event: any, letter: string) {
-    // TODO probably not legit for NgRx since a browser refresh could restore the Store but not the state of the material button components.
-    event.currentTarget.disabled = true;
     this.store.dispatch(guessLetter({ letter }));
+  }
+
+  isSelectedLetter(letter: string) : boolean {
+    return this.disabledLetters.has(letter);
+  }
+  ngOnDestroy(): void {
+    this.guessedLettersSubscription?.unsubscribe();
   }
 }
