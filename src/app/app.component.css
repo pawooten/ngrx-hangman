@@ -30,3 +30,6 @@
   display:flex;
   flex:4;
 }
+app-letter-panel {
+  width: 100%;
+}

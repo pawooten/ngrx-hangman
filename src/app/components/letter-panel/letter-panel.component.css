@@ -4,3 +4,6 @@
 .ngrx-hangman__letter-panel-third-row{
   margin: 0vw 10vw;
 }
+mat-grid-list {
+  height: 100%;
+}
