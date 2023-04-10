@@ -8,21 +8,16 @@
   flex:6;
   flex-direction: row;
 }
-.app-component__control-panel {
+.app-component__side-panel-wrapper {
   display: flex;
   flex: 2;
-  background-color: orange;
+  justify-content: center;
+  padding-top: 5vh;
 }
 .app-component__game-panel {
   display: flex;
   flex:4;
   background-color: aqua;
-}
-.app-component__score-board-panel-wrapper {
-  display: flex;
-  flex: 2;
-  justify-content: center;
-  padding-top: 5vh;
 }
 .app-component__letter-panel-wrapper {
   display:flex;

@@ -19,12 +19,14 @@ import { LetterPanelComponent } from './components/letter-panel/letter-panel.com
 
 import { playerReducer } from './reducers/player.reducer';
 import { letterReducer } from './reducers/letter.reducer';
+import { ControlPanelComponent } from './components/control-panel/control-panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ScoreBoardComponent,
-    LetterPanelComponent
+    LetterPanelComponent,
+    ControlPanelComponent
   ],
   imports: [
     BrowserModule,
