@@ -1,7 +1,32 @@
-mat-grid-list {
-  background-color: lightblue;
-}
-app-letter-panel {
-  width:100%;
+.outerDiv {
+  display: flex;
+  flex-direction: column;
   height: 100%;
+}
+.topDiv {
+  background-color: aqua;
+  display: flex;
+  flex:6;
+  flex-direction: row;
+}
+.leftTopDiv {
+  display: flex;
+  flex: 2;
+  background-color: orange;
+}
+.centerTopDiv {
+  display: flex;
+  flex:4;
+}
+.rightTopDiv {
+  display: flex;
+  flex: 2;
+  background-color: chartreuse;
+  justify-content: center;
+  padding-top: 5vh;
+}
+.bottomDiv {
+  background-color: rebeccapurple;
+  display:flex;
+  flex:4;
 }
