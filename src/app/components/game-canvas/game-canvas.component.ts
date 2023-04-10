@@ -1,13 +1,22 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-game-canvas',
   templateUrl: './game-canvas.component.html',
   styleUrls: ['./game-canvas.component.css']
 })
-export class GameCanvasComponent {
+export class GameCanvasComponent implements AfterViewInit {
+  ngAfterViewInit(): void {
+    const context = this.canvas.nativeElement.getContext("2d");
+    if (!context) {
+      console.error('uh oh');
+      return;
+    }
+    context.fillStyle = 'green';
+    context.fillRect(0, 0, 200, 200);
+  }
 
-  @ViewChild('canvas') canvas!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('canvas', {static: false, read: ElementRef}) canvas!: ElementRef<HTMLCanvasElement>;
 
 
 }
