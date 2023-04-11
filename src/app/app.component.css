@@ -17,6 +17,7 @@
 .app-component__game-panel {
   display: flex;
   flex:4;
+  justify-content: center;
 }
 .app-component__letter-panel-wrapper {
   display:flex;
@@ -30,4 +31,7 @@ app-letter-panel {
 app-game-canvas {
   width: 100%;
   padding: 0.5em 0em;
+}
+app-guess-indicator {
+  margin-top: 1em;
 }
