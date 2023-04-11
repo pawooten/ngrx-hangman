@@ -39,6 +39,6 @@ export class LetterPanelComponent implements OnDestroy {
     return this.disabledLetters.has(letter);
   }
   ngOnDestroy(): void {
-    this.guessedLettersSubscription?.unsubscribe();
+    this.guessedLettersSubscription.unsubscribe();
   }
 }
