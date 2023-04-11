@@ -21,6 +21,7 @@ import { playerReducer } from './reducers/player.reducer';
 import { letterReducer } from './reducers/letter.reducer';
 import { ControlPanelComponent } from './components/control-panel/control-panel.component';
 import { GameCanvasComponent } from './components/game-canvas/game-canvas.component';
+import { GuessIndicatorComponent } from './components/guess-indicator/guess-indicator.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { GameCanvasComponent } from './components/game-canvas/game-canvas.compon
     ScoreBoardComponent,
     LetterPanelComponent,
     ControlPanelComponent,
-    GameCanvasComponent
+    GameCanvasComponent,
+    GuessIndicatorComponent
   ],
   imports: [
     BrowserModule,
