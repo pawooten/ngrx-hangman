@@ -7,3 +7,7 @@ export const selectGuessedLetters = createSelector(
   letterStateSelector,
   (letters: LetterState) => letters.guessedLetters
 );
+export const selectCurrentGuess = createSelector(
+  letterStateSelector,
+  (letters: LetterState) => letters.currentGuess
+);
