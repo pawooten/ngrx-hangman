@@ -7,6 +7,7 @@ import { environment } from '../environments/environment';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
@@ -37,6 +38,7 @@ import { GuessIndicatorComponent } from './components/guess-indicator/guess-indi
     BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,
+    MatChipsModule,
     MatFormFieldModule,
     MatGridListModule,
     MatInputModule,
