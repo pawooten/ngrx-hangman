@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectCurrentGuess } from 'src/app/selectors/game.selector';
-import { AppState } from 'src/app/state/app.state';
+import { GameService } from 'src/app/services/game.service';
 
 @Component({
   selector: 'app-guess-indicator',
@@ -12,8 +10,7 @@ import { AppState } from 'src/app/state/app.state';
 export class GuessIndicatorComponent {
 
   readonly guess$ : Observable<string[]>;
-  constructor(private store: Store<AppState>) {
-    this.guess$ = this.store.pipe(
-      select(selectCurrentGuess));
+  constructor(private gameService: GameService) {
+    this.guess$ = this.gameService.getCurrentGuess$();
   }
 }

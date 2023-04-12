@@ -21,7 +21,7 @@ export class LetterPanelComponent implements OnDestroy {
   private disabledLetters = new Set<string>();
 
   constructor(private gameService: GameService) {
-    this.guessedLettersSubscription = this.gameService.getGuessedLetters().subscribe((guessedLetters) => {
+    this.guessedLettersSubscription = this.gameService.getGuessedLetters$().subscribe((guessedLetters) => {
       this.disabledLetters = new Set<string>(guessedLetters);
     });
   }

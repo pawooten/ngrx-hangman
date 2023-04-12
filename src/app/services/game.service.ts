@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AppState } from '../state/app.state';
 import { Store, select } from '@ngrx/store';
-import { selectGuessedLetters } from '../selectors/game.selector';
-import { guessLetter } from '../actions';
+import { selectCurrentGuess, selectGuessedLetters } from '../selectors/game.selector';
+import { guessLetter, newGame } from '../actions';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +11,19 @@ export class GameService {
 
   constructor(private store: Store<AppState>) {}
 
-  getGuessedLetters = () => {
+  public getCurrentGuess$() {
+    return this.store.pipe(select(selectCurrentGuess));
+  }
+
+  public getGuessedLetters$() {
     return this.store.pipe(select(selectGuessedLetters));
   }
 
-  guessLetter(letter: string) : void {
+  public guessLetter(letter: string) : void {
     this.store.dispatch(guessLetter({ letter }));
+  }
+
+  public newGame() : void {
+    this.store.dispatch(newGame());
   }
 }

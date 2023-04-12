@@ -8,6 +8,7 @@ import { map, tap } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { setPlayerName } from 'src/app/actions';
 import { selectGuessedLetters } from 'src/app/selectors/game.selector';
+import { GameService } from 'src/app/services/game.service';
 
 @Component({
   selector: 'app-score-board',
@@ -24,16 +25,16 @@ export class ScoreBoardComponent implements OnDestroy {
 
   readonly guessCountSubscription: Subscription;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private gameService: GameService) {
     this.gameRecord$ = store.pipe(
-        select(selectGameRecord),
-        map(this.formatGameRecord)
-      );
-    this.guessCountSubscription = this.store.pipe(
-      select(selectGuessedLetters)
-    ).subscribe((guessedLetters) => {
+      select(selectGameRecord),
+      map(this.formatGameRecord)
+    );
+
+    this.guessCountSubscription = gameService.getGuessedLetters$().subscribe((guessedLetters) => {
       this.guessCountBehaviorSubject.next(guessedLetters.length);
     });
+
     this.playerName$ = store.pipe(
       select(selectPlayerName),
       tap((name) => this.playerName.setValue(name))
