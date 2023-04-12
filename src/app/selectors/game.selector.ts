@@ -1,13 +1,13 @@
 import { createSelector } from "@ngrx/store";
 import { AppState } from "../state/app.state";
-import { LetterState } from "../state/letter.state";
+import { GameState } from "../state/game.state";
 
 const letterStateSelector = (state: AppState) => state.letters;
 export const selectGuessedLetters = createSelector(
   letterStateSelector,
-  (letters: LetterState) => letters.guessedLetters
+  (letters: GameState) => letters.guessedLetters
 );
 export const selectCurrentGuess = createSelector(
   letterStateSelector,
-  (letters: LetterState) => letters.currentGuess
+  (letters: GameState) => letters.currentGuess
 );

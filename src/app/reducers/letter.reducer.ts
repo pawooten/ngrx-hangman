@@ -1,8 +1,8 @@
 import { createReducer, on } from "@ngrx/store";
-import { LetterState } from "../state/letter.state";
+import { GameState } from "../state/game.state";
 import { newGame, guessLetter } from "../actions";
 
-const initialState: LetterState = {
+const initialState: GameState = {
   guessedLetters: [],
   targetWord: 'DOGBISCUIT',
   currentGuess: '??????????'.split('')

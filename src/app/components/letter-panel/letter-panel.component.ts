@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { guessLetter } from 'src/app/actions';
-import { selectGuessedLetters } from 'src/app/selectors/letter.selector';
+import { selectGuessedLetters } from 'src/app/selectors/game.selector';
 import { AppState } from 'src/app/state/app.state';
 
 @Component({

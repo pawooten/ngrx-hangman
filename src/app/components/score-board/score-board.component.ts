@@ -7,7 +7,7 @@ import { RecordScore } from 'src/app/RecordScore';
 import { map, tap } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { setPlayerName } from 'src/app/actions';
-import { selectGuessedLetters } from 'src/app/selectors/letter.selector';
+import { selectGuessedLetters } from 'src/app/selectors/game.selector';
 
 @Component({
   selector: 'app-score-board',

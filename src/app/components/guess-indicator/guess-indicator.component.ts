@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { selectCurrentGuess } from 'src/app/selectors/letter.selector';
+import { selectCurrentGuess } from 'src/app/selectors/game.selector';
 import { AppState } from 'src/app/state/app.state';
 
 @Component({

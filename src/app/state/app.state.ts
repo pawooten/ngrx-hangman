@@ -1,6 +1,6 @@
 import { PlayerState } from "./player.state";
-import { LetterState } from "./letter.state";
+import { GameState } from "./game.state";
 export interface AppState {
-  letters: LetterState,
+  letters: GameState,
   player: PlayerState
 };
