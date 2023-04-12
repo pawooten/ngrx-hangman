@@ -1,10 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Store, select } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { guessLetter } from 'src/app/actions';
-import { selectGuessedLetters } from 'src/app/selectors/game.selector';
 import { GameService } from 'src/app/services/game.service';
-import { AppState } from 'src/app/state/app.state';
 
 @Component({
   selector: 'app-letter-panel',
