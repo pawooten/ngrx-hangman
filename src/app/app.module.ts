@@ -19,7 +19,7 @@ import { ScoreBoardComponent } from './components/score-board/score-board.compon
 import { LetterPanelComponent } from './components/letter-panel/letter-panel.component';
 
 import { playerReducer } from './reducers/player.reducer';
-import { gameReducer } from './reducers/letter.reducer';
+import { gameReducer } from './reducers/game.reducer';
 import { ControlPanelComponent } from './components/control-panel/control-panel.component';
 import { GameCanvasComponent } from './components/game-canvas/game-canvas.component';
 import { GuessIndicatorComponent } from './components/guess-indicator/guess-indicator.component';
