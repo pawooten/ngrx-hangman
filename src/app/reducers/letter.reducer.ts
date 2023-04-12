@@ -5,10 +5,11 @@ import { newGame, guessLetter } from "../actions";
 const initialState: GameState = {
   guessedLetters: [],
   targetWord: 'DOGBISCUIT',
-  currentGuess: '??????????'.split('')
+  currentGuess: '??????????'.split(''),
+  currentTime: 0
 };
 
-export const letterReducer = createReducer(
+export const gameReducer = createReducer(
   initialState,
   on(newGame, (state) => initialState),
   on(guessLetter, (state, action) => {
@@ -17,7 +18,8 @@ export const letterReducer = createReducer(
     return {
       guessedLetters: state.guessedLetters.concat([action.letter]),
       targetWord: state.targetWord,
-      currentGuess: currentGuess
+      currentGuess: currentGuess,
+      currentTime: state.currentTime
     };
   })
 );

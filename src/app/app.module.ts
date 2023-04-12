@@ -19,7 +19,7 @@ import { ScoreBoardComponent } from './components/score-board/score-board.compon
 import { LetterPanelComponent } from './components/letter-panel/letter-panel.component';
 
 import { playerReducer } from './reducers/player.reducer';
-import { letterReducer } from './reducers/letter.reducer';
+import { gameReducer } from './reducers/letter.reducer';
 import { ControlPanelComponent } from './components/control-panel/control-panel.component';
 import { GameCanvasComponent } from './components/game-canvas/game-canvas.component';
 import { GuessIndicatorComponent } from './components/guess-indicator/guess-indicator.component';
@@ -44,7 +44,7 @@ import { GuessIndicatorComponent } from './components/guess-indicator/guess-indi
     MatInputModule,
     MatListModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({ player: playerReducer, letters: letterReducer }),
+    StoreModule.forRoot({ player: playerReducer, letters: gameReducer }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],

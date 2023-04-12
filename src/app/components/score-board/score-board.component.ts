@@ -17,6 +17,7 @@ import { GameService } from 'src/app/services/game.service';
 })
 export class ScoreBoardComponent implements OnDestroy {
   readonly gameRecord$: Observable<string>;
+  readonly gameTime$: Observable<number>;
   playerName$: Observable<string>;
   playerName = new FormControl('');
 
@@ -31,6 +32,7 @@ export class ScoreBoardComponent implements OnDestroy {
       map(this.formatGameRecord)
     );
 
+    this.gameTime$ = this.gameService.getGameTime$();
     this.guessCountSubscription = gameService.getGuessedLetters$().subscribe((guessedLetters) => {
       this.guessCountBehaviorSubject.next(guessedLetters.length);
     });

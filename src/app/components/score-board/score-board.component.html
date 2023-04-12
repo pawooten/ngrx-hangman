@@ -5,7 +5,10 @@
         <h4>{{gameRecord$ | async}}</h4>
       </mat-list-item>
       <mat-list-item>
-        <h4>Guesses: {{guessCount$ | async}}</h4>
+        <h4>Elapsed Time: {{gameTime$ | async}}</h4>
+      </mat-list-item>
+      <mat-list-item>
+        <h4>Guessed Letters: {{guessCount$ | async}}</h4>
       </mat-list-item>
       <mat-list-item>
         <mat-form-field appearance="fill">

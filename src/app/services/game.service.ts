@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AppState } from '../state/app.state';
 import { Store, select } from '@ngrx/store';
-import { selectCurrentGuess, selectGuessedLetters } from '../selectors/game.selector';
+import { selectCurrentGuess, selectGameTime, selectGuessedLetters } from '../selectors/game.selector';
 import { guessLetter, newGame } from '../actions';
 
 @Injectable({
@@ -15,6 +15,9 @@ export class GameService {
     return this.store.pipe(select(selectCurrentGuess));
   }
 
+  public getGameTime$() {
+    return this.store.pipe(select(selectGameTime));
+  }
   public getGuessedLetters$() {
     return this.store.pipe(select(selectGuessedLetters));
   }
