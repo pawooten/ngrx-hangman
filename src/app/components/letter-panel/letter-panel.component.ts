@@ -3,6 +3,7 @@ import { Store, select } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { guessLetter } from 'src/app/actions';
 import { selectGuessedLetters } from 'src/app/selectors/game.selector';
+import { GameService } from 'src/app/services/game.service';
 import { AppState } from 'src/app/state/app.state';
 
 @Component({
@@ -23,16 +24,14 @@ export class LetterPanelComponent implements OnDestroy {
 
   private disabledLetters = new Set<string>();
 
-  constructor(private store: Store<AppState>) {
-    this.guessedLettersSubscription = this.store.pipe(
-      select(selectGuessedLetters),
-      ).subscribe((guessedLetters) => {
-        this.disabledLetters = new Set<string>(guessedLetters);
-      });
+  constructor(private gameService: GameService) {
+    this.guessedLettersSubscription = this.gameService.getGuessedLetters().subscribe((guessedLetters) => {
+      this.disabledLetters = new Set<string>(guessedLetters);
+    });
   }
 
   onLetterClicked(event: any, letter: string) {
-    this.store.dispatch(guessLetter({ letter }));
+    this.gameService.guessLetter(letter);
   }
 
   isSelectedLetter(letter: string) : boolean {
