@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GuessIndicatorComponent } from './guess-indicator.component';
+import { provideMockStore } from '@ngrx/store/testing';
+import { initialState } from '../../reducers/game.reducer';
 
 describe('GuessIndicatorComponent', () => {
   let component: GuessIndicatorComponent;
@@ -8,7 +10,8 @@ describe('GuessIndicatorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ GuessIndicatorComponent ]
+      declarations: [ GuessIndicatorComponent ],
+      providers: [ provideMockStore({ initialState })]
     })
     .compileComponents();
 

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LetterPanelComponent } from './letter-panel.component';
+import { provideMockStore } from '@ngrx/store/testing';
+import { initialState } from '../../reducers/game.reducer';
 
 describe('LetterPanelComponent', () => {
   let component: LetterPanelComponent;
@@ -8,7 +10,8 @@ describe('LetterPanelComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LetterPanelComponent ]
+      declarations: [ LetterPanelComponent ],
+      providers: [ provideMockStore({ initialState })]
     })
     .compileComponents();
 
