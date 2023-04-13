@@ -2,7 +2,7 @@ import { createReducer, on } from "@ngrx/store";
 import { GameState } from "../state/game.state";
 import { newGame, guessLetter, tick } from "../actions";
 
-const initialState: GameState = {
+export const initialState: GameState = {
   guessedLetters: [],
   targetWord: 'DOGBISCUIT',
   currentGuess: '??????????'.split(''),

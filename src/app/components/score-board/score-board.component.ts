@@ -1,13 +1,9 @@
 import { Component, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
-import { Store, select } from '@ngrx/store';
-import { selectGameRecord, selectPlayerName } from '../../selectors/player.selectors';
-import { AppState } from 'src/app/state/app.state';
 import { RecordScore } from 'src/app/RecordScore';
-import { map, tap } from 'rxjs/operators';
-import { FormControl } from '@angular/forms';
-import { setPlayerName } from '../../actions';
+import { map } from 'rxjs/operators';
 import { GameService } from '../../services/game.service';
+import { PlayerService } from '../../services/player.service';
 
 @Component({
   selector: 'app-score-board',
@@ -18,16 +14,14 @@ export class ScoreBoardComponent implements OnDestroy {
   readonly gameRecord$: Observable<string>;
   readonly gameTime$: Observable<number>;
   playerName$: Observable<string>;
-  playerName = new FormControl('');
 
   private guessCountBehaviorSubject = new BehaviorSubject(0);
   readonly guessCount$ = this.guessCountBehaviorSubject.asObservable();
 
   readonly guessCountSubscription: Subscription;
 
-  constructor(private store: Store<AppState>, private gameService: GameService) {
-    this.gameRecord$ = store.pipe(
-      select(selectGameRecord),
+  constructor(private gameService: GameService, private playerService : PlayerService) {
+    this.gameRecord$ = playerService.getRecord$().pipe(
       map(this.formatGameRecord)
     );
 
@@ -36,35 +30,17 @@ export class ScoreBoardComponent implements OnDestroy {
       this.guessCountBehaviorSubject.next(guessedLetters.length);
     });
 
-    this.playerName$ = store.pipe(
-      select(selectPlayerName),
-      tap((name) => this.playerName.setValue(name))
-    );
-    this.playerName.registerOnChange(() => {
-      let formName = this.playerName?.value;
-      if (!formName) {
-        formName = '';
-      }
-      this.store.dispatch(setPlayerName({ playerName: formName }));
-    });
+    this.playerName$ = playerService.getPlayerName$();
   }
 
   ngOnDestroy(): void {
     this.guessCountSubscription.unsubscribe();
   }
 
-  onFormPlayerNameChange() {
-    let formName = this.playerName?.value;
-    if (!formName) {
-      formName = '';
-    }
-    this.store.dispatch(setPlayerName({ playerName: formName }));
-  }
-
   private formatGameRecord(record: RecordScore | undefined) : string {
     if (!record) {
       return 'No Record';
     }
-    return `Record: ${record.playerName} (${record.wordLength} in ${record.time}s)`;
+    return `Record: ${record.playerName} (${record.wordLength} in ${record.time})`;
   }
 }

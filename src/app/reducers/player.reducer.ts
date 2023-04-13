@@ -3,7 +3,7 @@ import { newGame, setPlayerName } from "../actions";
 import { PlayerState } from "../state/player.state";
 
 const initialState: PlayerState = {
-  playerName: '',
+  playerName: 'Paul',
   highScore: { playerName: 'Paul', wordLength: 8, time: 30 }
 };
 
