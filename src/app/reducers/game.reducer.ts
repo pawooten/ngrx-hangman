@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { GameState } from "../state/game.state";
-import { newGame, guessLetter } from "../actions";
+import { newGame, guessLetter, tick } from "../actions";
 
 const initialState: GameState = {
   guessedLetters: [],
@@ -21,6 +21,14 @@ export const gameReducer = createReducer(
       currentGuess: currentGuess,
       currentTime: state.currentTime
     };
+  }),
+  on(tick, (state) => {
+    return {
+      guessedLetters: state.guessedLetters,
+      targetWord: state.targetWord,
+      currentGuess: state.currentGuess,
+      currentTime: state.currentTime + 1
+    }
   })
 );
 
