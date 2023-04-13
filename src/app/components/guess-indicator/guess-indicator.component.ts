@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { GameService } from 'src/app/services/game.service';
+import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'app-guess-indicator',

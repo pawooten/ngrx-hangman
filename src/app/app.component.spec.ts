@@ -22,10 +22,31 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('ngrx-hangman');
   });
 
-  it('should render title', () => {
+  it('should render an app-control-panel', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('ngrx-hangman app is running!');
+    expect(compiled.querySelector('app-control-panel')).toBeTruthy();
+  });
+
+  it('should render an app-guess-indicator', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('app-guess-indicator')).toBeTruthy();
+  });
+
+  it('should render an app-score-board', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('app-score-board')).toBeTruthy();
+  });
+
+  it('should render an app-letter-panel', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('app-letter-panel')).toBeTruthy();
   });
 });

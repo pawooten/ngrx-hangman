@@ -1,6 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { GameService } from 'src/app/services/game.service';
+import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'app-letter-panel',
