@@ -5,6 +5,5 @@ module.exports = {
   testEnvironment: "jsdom",
   moduleFileExtensions: ["ts", "html", "js", "json", "mjs"],
   transformIgnorePatterns: ["<rootDir>/node_modules/(?!(.*\\.mjs)|date-fns)"],
-
 };
 

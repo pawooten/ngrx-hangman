@@ -5,13 +5,11 @@ import { PlayerService } from './player.service';
 
 describe('PlayerService', () => {
   let service: PlayerService;
-  let store: MockStore;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [ provideMockStore({ initialState })]
     });
-    store = TestBed.inject(MockStore);
     service = TestBed.inject(PlayerService);
   });
 

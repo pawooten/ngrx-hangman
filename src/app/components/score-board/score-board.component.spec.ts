@@ -6,6 +6,8 @@ import { MockGameService } from '../../services/mock-game.service';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { initialState } from '../../reducers/game.reducer';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 describe('ScoreBoardComponent', () => {
   let component: ScoreBoardComponent;
   let fixture: ComponentFixture<ScoreBoardComponent>;
@@ -14,6 +16,7 @@ describe('ScoreBoardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ScoreBoardComponent ],
+      imports: [ MatListModule, MatCardModule ],
       providers: [
         { provide: GameService, useClass: MockGameService },
         provideMockStore({ initialState })

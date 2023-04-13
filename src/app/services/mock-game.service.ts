@@ -1,6 +1,10 @@
 import { of } from "rxjs";
 import { GameService } from "./game.service";
+import { Injectable } from "@angular/core";
 
+@Injectable({
+  providedIn: 'root'
+})
 export class MockGameService extends GameService {
   override getCurrentGuess$() {
     return of(['A', 'B', 'C']);

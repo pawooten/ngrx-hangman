@@ -3,6 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LetterPanelComponent } from './letter-panel.component';
 import { provideMockStore } from '@ngrx/store/testing';
 import { initialState } from '../../reducers/game.reducer';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
 
 describe('LetterPanelComponent', () => {
   let component: LetterPanelComponent;
@@ -11,6 +13,7 @@ describe('LetterPanelComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ LetterPanelComponent ],
+      imports: [ MatCardModule, MatGridListModule ],
       providers: [ provideMockStore({ initialState })]
     })
     .compileComponents();
