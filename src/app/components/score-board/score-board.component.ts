@@ -1,14 +1,13 @@
 import { Component, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { selectGameRecord, selectPlayerName } from 'src/app/selectors/player.selectors';
+import { selectGameRecord, selectPlayerName } from '../../selectors/player.selectors';
 import { AppState } from 'src/app/state/app.state';
 import { RecordScore } from 'src/app/RecordScore';
 import { map, tap } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
-import { setPlayerName } from 'src/app/actions';
-import { selectGuessedLetters } from 'src/app/selectors/game.selector';
-import { GameService } from 'src/app/services/game.service';
+import { setPlayerName } from '../../actions';
+import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'app-score-board',
