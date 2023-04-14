@@ -2,7 +2,7 @@
   <mat-card-content>
     <mat-list>
       <mat-list-item>
-        <h4>{{gameRecord$ | async}}</h4>
+        <h4 class="score-board__game-record">{{gameRecord$ | async}}</h4>
       </mat-list-item>
       <mat-list-item>
         <h4>Player: {{playerName$ | async}}</h4>
@@ -16,4 +16,3 @@
     </mat-list>
   </mat-card-content>
 </mat-card>
-
