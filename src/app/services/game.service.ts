@@ -3,11 +3,20 @@ import { AppState } from '../state/app.state';
 import { Store, select } from '@ngrx/store';
 import { selectCurrentGuess, selectGameTime, selectGuessedLetters } from '../selectors/game.selector';
 import { guessLetter, newGame, tick } from '../actions';
+import { Observable } from 'rxjs';
+
+export interface IGameService {
+  getCurrentGuess$(): Observable<string[]>;
+  getGameTime$(): Observable<number>;
+  getGuessedLetters$(): Observable<string[]>;
+  guessLetter(letter: string): void;
+  newGame(): void;
+}
 
 @Injectable({
   providedIn: 'root'
 })
-export class GameService {
+export class GameService implements IGameService {
 
   private clockTickInterval = 1000; // ms
 

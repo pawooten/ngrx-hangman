@@ -1,25 +1,24 @@
-import { of } from "rxjs";
-import { GameService } from "./game.service";
+import { Observable, of } from "rxjs";
+import { IGameService } from "./game.service";
 import { Injectable } from "@angular/core";
 
-@Injectable({
-  providedIn: 'root'
-})
-export class MockGameService extends GameService {
-  override getCurrentGuess$() {
+@Injectable()
+export class MockGameService implements IGameService {
+  public getCurrentGuess$(): Observable<string[]> {
     return of(['A', 'B', 'C']);
   }
-  override getGameTime$() {
+
+  public getGameTime$(): Observable<number> {
     return of(0);
   }
 
-  override getGuessedLetters$() {
+  public getGuessedLetters$(): Observable<string[]> {
     return of([]);
   }
 
-  public override guessLetter(letter: string): void {
+  public guessLetter(letter: string): void {
   }
 
-  public override newGame(): void {
+  public newGame(): void {
   }
-}
+};
