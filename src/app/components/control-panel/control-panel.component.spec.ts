@@ -6,10 +6,9 @@ import { GameService } from '../../services/game.service';
 describe('ControlPanelComponent', () => {
   let component: ControlPanelComponent;
   let fixture: ComponentFixture<ControlPanelComponent>;
-  let mockGameService: MockGameService;
+  const mockGameService = new MockGameService();
   beforeEach(
     waitForAsync(() => {
-      mockGameService = new MockGameService();
       TestBed.configureTestingModule({
         declarations: [ ControlPanelComponent ],
         providers: [

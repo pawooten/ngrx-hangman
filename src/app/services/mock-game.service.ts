@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class MockGameService implements IGameService {
   public getCurrentGuess$(): Observable<string[]> {
-    return of(['A', 'B', 'C']);
+    return of(['?', 'O', ]);//'G', 'B', '?', '?', 'C', '?', '?', 'T']);
   }
 
   public getGameTime$(): Observable<number> {
