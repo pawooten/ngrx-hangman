@@ -3,4 +3,5 @@ export interface GameState {
   targetWord: string;
   currentGuess: string[];
   currentTime: number;
+  isPaused: boolean;
 }

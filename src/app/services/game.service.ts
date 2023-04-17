@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
-import { AppState } from '../state/app.state';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { selectCurrentGuess, selectGameTime, selectGuessedLetters } from '../selectors/game.selector';
-import { guessLetter, newGame, tick } from '../actions';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+
+import { AppState } from '../state/app.state';
+import { selectCurrentGuess, selectGameTime, selectGuessedLetters, selectPause } from '../selectors/game.selector';
+import { guessLetter, newGame, pause, tick } from '../actions';
 
 export interface IGameService {
   getCurrentGuess$(): Observable<string[]>;
@@ -11,16 +12,25 @@ export interface IGameService {
   getGuessedLetters$(): Observable<string[]>;
   guessLetter(letter: string): void;
   newGame(): void;
+  pause(): void;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class GameService implements IGameService {
-
+export class GameService implements IGameService, OnDestroy {
+  private clockTickTimer: NodeJS.Timer | null = null;
   private clockTickInterval = 1000; // ms
+  private readonly pauseSubscription: Subscription;
 
   constructor(private store: Store<AppState>) {
+    this.pauseSubscription = this.store.pipe(select(selectPause)).subscribe((isPaused) => {
+      if (isPaused) {
+        this.stopGameTimer();
+      } else {
+        this.startGameTimer();
+      }
+    });
     this.startGameTimer();
   }
 
@@ -43,7 +53,24 @@ export class GameService implements IGameService {
     this.store.dispatch(newGame());
   }
 
+  public pause() : void {
+    this.store.dispatch(pause());
+  }
+
+  public ngOnDestroy(): void {
+    this.pauseSubscription.unsubscribe();
+  }
+
   private startGameTimer(): void {
-    setInterval( () => this.store.dispatch(tick()), this.clockTickInterval);
+    if (!this.clockTickTimer) {
+      this.clockTickTimer = setInterval( () => this.store.dispatch(tick()), this.clockTickInterval);
+    }
+  }
+
+  private stopGameTimer() : void {
+    if (this.clockTickTimer) {
+      clearInterval(this.clockTickTimer);
+      this.clockTickTimer = null;
+    }
   }
 }

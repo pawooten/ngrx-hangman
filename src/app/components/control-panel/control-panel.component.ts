@@ -12,4 +12,8 @@ export class ControlPanelComponent {
   onNewGameClicked() {
     this.gameService.newGame();
   }
+
+  onPauseClicked() {
+    this.gameService.pause();
+  }
 }

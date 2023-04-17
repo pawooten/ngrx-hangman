@@ -14,4 +14,8 @@ export const selectCurrentGuess = createSelector(
 export const selectGameTime = createSelector(
   gameStateSelector,
   (gameState: GameState) => gameState.currentTime
-)
+);
+export const selectPause = createSelector(
+  gameStateSelector,
+  (gameState: GameState) => gameState.isPaused
+);

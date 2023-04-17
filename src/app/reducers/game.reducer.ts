@@ -1,12 +1,13 @@
 import { createReducer, on } from "@ngrx/store";
 import { GameState } from "../state/game.state";
-import { newGame, guessLetter, tick } from "../actions";
+import { newGame, guessLetter, tick, pause } from "../actions";
 
 export const initialState: GameState = {
   guessedLetters: [],
   targetWord: 'DOGBISCUIT',
   currentGuess: '??????????'.split(''),
-  currentTime: 0
+  currentTime: 0,
+  isPaused: false
 };
 
 export const gameReducer = createReducer(
@@ -19,7 +20,8 @@ export const gameReducer = createReducer(
       guessedLetters: state.guessedLetters.concat([action.letter]),
       targetWord: state.targetWord,
       currentGuess: currentGuess,
-      currentTime: state.currentTime
+      currentTime: state.currentTime,
+      isPaused: state.isPaused
     };
   }),
   on(tick, (state) => {
@@ -27,7 +29,17 @@ export const gameReducer = createReducer(
       guessedLetters: state.guessedLetters,
       targetWord: state.targetWord,
       currentGuess: state.currentGuess,
-      currentTime: state.currentTime + 1
+      currentTime: state.currentTime + 1,
+      isPaused: state.isPaused
+    }
+  }),
+  on(pause, (state) => {
+    return {
+      guessedLetters: state.guessedLetters,
+      targetWord: state.targetWord,
+      currentGuess: state.currentGuess,
+      currentTime: state.currentTime,
+      isPaused: !state.isPaused
     }
   })
 );
