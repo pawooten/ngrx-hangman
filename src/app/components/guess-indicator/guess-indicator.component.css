@@ -1,0 +1,8 @@
+mat-chip {
+  width: 32px;
+}
+mat-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

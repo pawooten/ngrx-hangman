@@ -5,5 +5,6 @@
         <span>{{ guessLetter }}</span>
       </mat-chip>
     </mat-chip-set>
+    <h6 *ngIf="isPaused$ | async">The game is paused. Resume play to view the current guess</h6>
   </mat-card-content>
 </mat-card>

@@ -10,7 +10,10 @@ import { GameService } from '../../services/game.service';
 export class GuessIndicatorComponent {
 
   readonly guess$ : Observable<string[]>;
+  readonly isPaused$: Observable<boolean>;
+
   constructor(private gameService: GameService) {
     this.guess$ = this.gameService.getCurrentGuess$();
+    this.isPaused$ = this.gameService.getIsPaused$();
   }
 }

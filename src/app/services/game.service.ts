@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, combineLatest, map } from 'rxjs';
 
 import { AppState } from '../state/app.state';
 import { selectCurrentGuess, selectGameTime, selectGuessedLetters, selectPause } from '../selectors/game.selector';
@@ -36,7 +36,14 @@ export class GameService implements IGameService, OnDestroy {
   }
 
   public getCurrentGuess$() {
-    return this.store.pipe(select(selectCurrentGuess));
+    return combineLatest([this.store.select(selectCurrentGuess), this.getIsPaused$()]).pipe(
+      map(([guessLetters, isPaused]) => {
+        let guessResult: string[] = guessLetters;
+        if (isPaused) {
+          guessResult = new Array(guessLetters.length).fill('');
+        }
+        return guessResult;
+    }));
   }
 
   public getGameTime$() {
