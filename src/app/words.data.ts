@@ -1,0 +1,22 @@
+export const wordData = [
+  'Mario',
+  'Luigi',
+  'Princess',
+  'Toad',
+  'Gomba',
+  'Wario',
+  'Bowser',
+  'Link',
+  'Zelda',
+  'Ganondorf',
+  'Samus',
+  'Kirby',
+  'Sonic',
+  'Tails',
+  'Eggman',
+  'Knuckles',
+  'Shantae',
+  'Ratchet',
+  'Clank',
+  'Daxter'
+];

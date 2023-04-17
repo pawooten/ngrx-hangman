@@ -1,18 +1,28 @@
 import { createReducer, on } from "@ngrx/store";
 import { GameState } from "../state/game.state";
 import { newGame, guessLetter, tick, pause } from "../actions";
+import { wordData } from "../words.data";
 
 export const initialState: GameState = {
   guessedLetters: [],
-  targetWord: 'DOGBISCUIT',
-  currentGuess: '??????????'.split(''),
+  targetWord: '',
+  currentGuess: [],
   currentTime: 0,
   isPaused: false
 };
 
 export const gameReducer = createReducer(
   initialState,
-  on(newGame, (state) => initialState),
+  on(newGame, (state) => {
+    const newWord = getNewWord();
+    return {
+      guessedLetters: initialState.guessedLetters,
+      targetWord: newWord,
+      currentGuess: getInitialGuessForNewWord(newWord),
+      currentTime: initialState.currentTime,
+      isPaused: initialState.isPaused
+    };
+  }),
   on(guessLetter, (state, action) => {
     const currentGuess = [...state.currentGuess];
     updateGuess(currentGuess, action.letter, state.targetWord);
@@ -58,3 +68,9 @@ const updateGuess = (currentGuess: string[], guessedLetter: string, target: stri
     }
   }
 };
+
+const getNewWord = () => {
+  const index = Math.round(Math.random() * wordData.length);
+  return wordData[index].toUpperCase();
+};
+const getInitialGuessForNewWord = (newWord: string) => new Array(newWord.length).fill('?');
