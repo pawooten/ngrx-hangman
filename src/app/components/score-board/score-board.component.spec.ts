@@ -53,6 +53,16 @@ describe('ScoreBoardComponent', () => {
     expect(mockPlayerService.getPlayerName$).toHaveBeenCalled();
   })
 
+  it('should render the playerName', () => {
+    fixture = TestBed.createComponent(ScoreBoardComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const recordHeading = compiled.querySelector<HTMLHeadingElement>('.score-board__player-name');
+    expect(recordHeading?.innerHTML).toBe('Player: Paul');
+  });
+
   it('should retrieve the record score', () => {
     jest.spyOn(mockPlayerService, 'getRecord$');
     fixture = TestBed.createComponent(ScoreBoardComponent);
@@ -70,5 +80,25 @@ describe('ScoreBoardComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const recordHeading = compiled.querySelector<HTMLHeadingElement>('.score-board__game-record');
     expect(recordHeading?.innerHTML).toBe('Record: Paul (10 in 10)');
+  });
+
+  it('should retrieve the guessed letters', () => {
+    jest.spyOn(mockGameService, 'getGuessedLetters$');
+    fixture = TestBed.createComponent(ScoreBoardComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    expect(mockGameService.getGuessedLetters$).toHaveBeenCalled();
+  });
+
+  it('should render the guessed letters count', () => {
+    fixture = TestBed.createComponent(ScoreBoardComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    const subscription = mockGameService.getGuessedLetters$().subscribe((guessedLetters) => {
+      const compiled = fixture.nativeElement as HTMLElement;
+      const heading = compiled.querySelector<HTMLHeadingElement>('score-board__guessed-letters');
+      expect(heading?.innerHTML).toBe(`Guessed Letters: ${guessedLetters.length}`);
+    });
+    subscription.unsubscribe();
   });
 });

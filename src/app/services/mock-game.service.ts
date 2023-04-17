@@ -13,7 +13,7 @@ export class MockGameService implements IGameService {
   }
 
   public getGuessedLetters$(): Observable<string[]> {
-    return of([]);
+    return of(['A', 'B', 'C']);
   }
 
   public guessLetter(letter: string): void {

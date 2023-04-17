@@ -5,13 +5,13 @@
         <h4 class="score-board__game-record">{{gameRecord$ | async}}</h4>
       </mat-list-item>
       <mat-list-item>
-        <h4>Player: {{playerName$ | async}}</h4>
+        <h4 class="score-board__player-name">Player: {{playerName$ | async}}</h4>
       </mat-list-item>
       <mat-list-item>
         <h4>Elapsed Time: {{gameTime$ | async}}</h4>
       </mat-list-item>
       <mat-list-item>
-        <h4>Guessed Letters: {{guessCount$ | async}}</h4>
+        <h4 class="score-board__guessed-letters">Guessed Letters: {{guessCount$ | async}}</h4>
       </mat-list-item>
     </mat-list>
   </mat-card-content>
