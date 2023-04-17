@@ -1,13 +1,20 @@
 <mat-card>
   <mat-card-content>
-    <mat-grid-list rows="3" cols="1" class="ngrx-hangman__letter-panel-outer-list">
-      <mat-grid-list *ngFor="let rowLetters of letters; index as rowIndex" cols="{{rowLetters.length}}" [ngClass]="rowCss[rowIndex]" rowHeight="5em">
-        <mat-grid-tile *ngFor="let rowLetter of rowLetters">
-          <button mat-fab (click)="onLetterClicked($event, rowLetter)" [disabled]="isSelectedLetter(rowLetter)">
-            {{rowLetter}}
-          </button>
-        </mat-grid-tile>
+    <div class="ngrx-hangman__letter-panel--wrapper">
+      <mat-grid-list rows="3" cols="1" class="ngrx-hangman__letter-panel-outer-list">
+        <mat-grid-list *ngFor="let rowLetters of letters; index as rowIndex" cols="{{rowLetters.length}}" [ngClass]="rowCss[rowIndex]" rowHeight="5em">
+          <mat-grid-tile *ngFor="let rowLetter of rowLetters">
+            <button mat-fab *ngIf="!(isPaused$ | async)" (click)="onLetterClicked($event, rowLetter)" [disabled]="isSelectedLetter(rowLetter)">
+              {{rowLetter}}
+            </button>
+          </mat-grid-tile>
+        </mat-grid-list>
       </mat-grid-list>
-    </mat-grid-list>
+      <div *ngIf="isPaused$ | async" class="ngrx-hangman__letter-panel-pause-notification-wrapper">
+        <span>
+          <h4>The game is paused. Press Resume to continue play.</h4>
+        </span>
+      </div>
+    </div>
   </mat-card-content>
 </mat-card>

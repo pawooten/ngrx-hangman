@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, map } from 'rxjs';
 import { GameService } from '../../services/game.service';
 
 @Component({
@@ -16,7 +16,8 @@ export class LetterPanelComponent implements OnDestroy {
 
   readonly rowCss = [ '', 'ngrx-hangman__letter-panel-second-row', 'ngrx-hangman__letter-panel-third-row'];
 
-  readonly guessedLettersSubscription: Subscription;
+  readonly isPaused$ : Observable<boolean>;
+  private readonly guessedLettersSubscription: Subscription;
 
   private disabledLetters = new Set<string>();
 
@@ -24,6 +25,8 @@ export class LetterPanelComponent implements OnDestroy {
     this.guessedLettersSubscription = this.gameService.getGuessedLetters$().subscribe((guessedLetters) => {
       this.disabledLetters = new Set<string>(guessedLetters);
     });
+
+    this.isPaused$ = this.gameService.getIsPaused$();
   }
 
   onLetterClicked(event: any, letter: string) {
