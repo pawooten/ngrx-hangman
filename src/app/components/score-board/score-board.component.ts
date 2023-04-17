@@ -13,7 +13,8 @@ import { PlayerService } from '../../services/player.service';
 export class ScoreBoardComponent implements OnDestroy {
   readonly gameRecord$: Observable<string>;
   readonly gameTime$: Observable<number>;
-  playerName$: Observable<string>;
+  readonly isPaused$: Observable<boolean>;
+  readonly playerName$: Observable<string>;
 
   private guessCountBehaviorSubject = new BehaviorSubject(0);
   readonly guessCount$ = this.guessCountBehaviorSubject.asObservable();
@@ -21,16 +22,16 @@ export class ScoreBoardComponent implements OnDestroy {
   readonly guessCountSubscription: Subscription;
 
   constructor(private gameService: GameService, private playerService : PlayerService) {
-    this.gameRecord$ = playerService.getRecord$().pipe(
+    this.gameRecord$ = this.playerService.getRecord$().pipe(
       map(this.formatGameRecord)
     );
+    this.playerName$ = this.playerService.getPlayerName$();
 
     this.gameTime$ = this.gameService.getGameTime$();
     this.guessCountSubscription = gameService.getGuessedLetters$().subscribe((guessedLetters) => {
       this.guessCountBehaviorSubject.next(guessedLetters.length);
     });
-
-    this.playerName$ = playerService.getPlayerName$();
+    this.isPaused$ = gameService.getIsPaused$();
   }
 
   ngOnDestroy(): void {

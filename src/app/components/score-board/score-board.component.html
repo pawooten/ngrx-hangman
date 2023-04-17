@@ -13,6 +13,11 @@
       <mat-list-item>
         <h4 class="score-board__guessed-letters">Guessed Letters: {{guessCount$ | async}}</h4>
       </mat-list-item>
+      <mat-list-item>
+        <h6 class="score-board__pause-notifier">
+          <span *ngIf="isPaused$ | async">The game is paused.</span>
+        </h6>
+      </mat-list-item>
     </mat-list>
   </mat-card-content>
 </mat-card>
