@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { GameService } from '../../services/game.service';
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'app-control-panel',
@@ -7,7 +8,10 @@ import { GameService } from '../../services/game.service';
   styleUrls: ['./control-panel.component.css']
 })
 export class ControlPanelComponent {
-  constructor(private gameService: GameService) {}
+  readonly pauseLabel$: Observable<string>;
+  constructor(private gameService: GameService) {
+    this.pauseLabel$ = gameService.getIsPaused$().pipe(map((isPaused) => isPaused ? 'Resume': 'Pause'));
+  }
 
   onNewGameClicked() {
     this.gameService.newGame();

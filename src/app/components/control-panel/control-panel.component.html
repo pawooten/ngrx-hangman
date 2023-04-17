@@ -3,7 +3,7 @@
     <button mat-raised-button (click)="onNewGameClicked()">New Game</button>
   </mat-list-item>
   <mat-list-item>
-    <button mat-raised-button (click)="onPauseClicked()">Pause</button>
+    <button mat-raised-button (click)="onPauseClicked()">{{ pauseLabel$ | async}}</button>
   </mat-list-item>
 </mat-list>
 

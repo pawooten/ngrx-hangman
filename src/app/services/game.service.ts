@@ -10,6 +10,7 @@ export interface IGameService {
   getCurrentGuess$(): Observable<string[]>;
   getGameTime$(): Observable<number>;
   getGuessedLetters$(): Observable<string[]>;
+  getIsPaused$(): Observable<boolean>;
   guessLetter(letter: string): void;
   newGame(): void;
   pause(): void;
@@ -44,7 +45,9 @@ export class GameService implements IGameService, OnDestroy {
   public getGuessedLetters$() {
     return this.store.pipe(select(selectGuessedLetters));
   }
-
+  public getIsPaused$() {
+    return this.store.pipe(select(selectPause));
+  }
   public guessLetter(letter: string) : void {
     this.store.dispatch(guessLetter({ letter }));
   }
