@@ -1,22 +1,31 @@
-import { Component, ElementRef, AfterViewInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
+import { Observable, combineLatest, map } from 'rxjs';
+import { GameService } from '../../services/game.service';
 
 @Component({
   selector: 'app-game-canvas',
   templateUrl: './game-canvas.component.html',
   styleUrls: ['./game-canvas.component.css']
 })
-export class GameCanvasComponent implements AfterViewInit {
-  ngAfterViewInit(): void {
-    // const context = this.canvas.nativeElement.getContext("2d");
-    // if (!context) {
-    //   console.error('uh oh');
-    //   return;
-    // }
-    // context.fillStyle = 'green';
-    // context.fillRect(0, 0, 200, 200);
+export class GameCanvasComponent {
+  private readonly imagePaths = [
+    '../../../assets/hangman-png/01.png',
+    '../../../assets/hangman-png/02.png',
+    '../../../assets/hangman-png/03.png',
+    '../../../assets/hangman-png/04.png',
+    '../../../assets/hangman-png/05.png',
+    '../../../assets/hangman-png/06.png',
+    '../../../assets/hangman-png/07.png',
+    '../../../assets/hangman-png/08.png',
+    '../../../assets/hangman-png/09.png',
+    '../../../assets/hangman-png/10.png',
+  ];
+
+  readonly currentImagePath$: Observable<string>;
+
+  constructor(private gameService: GameService) {
+    this.currentImagePath$ = combineLatest([this.gameService.getGuessedLetters$(), this.gameService.getCurrentGuess$()]).pipe(map((guessedLetters, currentGuess) => {
+      return this.imagePaths[7];
+    }));
   }
-
-  @ViewChild('canvas', {static: false, read: ElementRef}) canvas!: ElementRef<HTMLCanvasElement>;
-
-
 }

@@ -16,6 +16,7 @@
 }
 .app-component__game-panel {
   display: flex;
+  flex-direction: column;
   flex:4;
   justify-content: center;
 }
