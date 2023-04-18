@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 import { ScoreBoardComponent } from './score-board.component';
 import { GameService } from '../../services/game.service';
@@ -17,7 +18,7 @@ describe('ScoreBoardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ScoreBoardComponent ],
-      imports: [ MatListModule, MatCardModule ],
+      imports: [ MatListModule, MatCardModule, MatIconModule ],
       providers: [
         { provide: GameService, useValue: mockGameService },
         { provide: PlayerService, useValue: mockPlayerService }

@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
+
 import { ControlPanelComponent } from './control-panel.component';
 import { MockGameService } from '../../services/mock-game.service';
 import { GameService } from '../../services/game.service';
@@ -11,6 +13,7 @@ describe('ControlPanelComponent', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [ ControlPanelComponent ],
+        imports: [ MatIconModule ],
         providers: [
           { provide: GameService, useValue: mockGameService },
         ]

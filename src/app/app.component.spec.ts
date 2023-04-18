@@ -1,15 +1,17 @@
 import { TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
+
 import { AppComponent } from './app.component';
 import { LetterPanelComponent } from './components/letter-panel/letter-panel.component';
 import { GuessIndicatorComponent } from './components/guess-indicator/guess-indicator.component';
 import { ScoreBoardComponent } from './components/score-board/score-board.component';
 import { ControlPanelComponent } from './components/control-panel/control-panel.component';
-import { provideMockStore } from '@ngrx/store/testing';
 import { initialState } from './reducers/game.reducer';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
-import { MatListModule } from '@angular/material/list';
-import { MatChipsModule } from '@angular/material/chips';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -17,7 +19,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent, ControlPanelComponent, LetterPanelComponent, GuessIndicatorComponent, ScoreBoardComponent
       ],
-      imports: [ MatCardModule, MatChipsModule, MatGridListModule, MatListModule],
+      imports: [ MatCardModule, MatChipsModule, MatGridListModule, MatIconModule, MatListModule],
       providers: [ provideMockStore({ initialState})]
     }).compileComponents();
   });
