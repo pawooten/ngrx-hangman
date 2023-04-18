@@ -24,8 +24,22 @@ export class GameCanvasComponent {
   readonly currentImagePath$: Observable<string>;
 
   constructor(private gameService: GameService) {
-    this.currentImagePath$ = combineLatest([this.gameService.getGuessedLetters$(), this.gameService.getCurrentGuess$()]).pipe(map((guessedLetters, currentGuess) => {
-      return this.imagePaths[7];
+    this.currentImagePath$ = combineLatest([
+      this.gameService.getGuessedLetters$(),
+      this.gameService.getCurrentGuess$(),
+      this.gameService.getIsPaused$(),
+      ]).pipe(map(([guessedLetters, currentGuess, isPaused]) => {
+        if (isPaused) {
+          return this.imagePaths[0];
+        }
+
+        const correctGuessCount = currentGuess.filter(letter => letter !== '?').length;
+        let index = guessedLetters.length - correctGuessCount;
+        if (index >= this.imagePaths.length) {
+          index = this.imagePaths.length - 1;
+        }
+
+        return this.imagePaths[index];
     }));
   }
 }
