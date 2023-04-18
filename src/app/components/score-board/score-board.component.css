@@ -1,3 +1,8 @@
 mat-form-field {
   margin-top: 20px;
 }
+mat-icon {
+  margin-right: 0.5em;
+  position:relative;
+  top: 0.25em;
+}
