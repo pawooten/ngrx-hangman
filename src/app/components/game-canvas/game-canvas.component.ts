@@ -21,25 +21,34 @@ export class GameCanvasComponent {
     '../../../assets/hangman-png/10.png',
   ];
 
+  readonly wrongGuessCount$: Observable<number>;
+  readonly wrongGuessMessage$: Observable<string>;
   readonly currentImagePath$: Observable<string>;
 
   constructor(private gameService: GameService) {
-    this.currentImagePath$ = combineLatest([
+    this.wrongGuessCount$ = combineLatest([
       this.gameService.getGuessedLetters$(),
       this.gameService.getCurrentGuess$(),
       this.gameService.getIsPaused$(),
       ]).pipe(map(([guessedLetters, currentGuess, isPaused]) => {
         if (isPaused) {
-          return this.imagePaths[0];
+          return 0;
         }
 
         const correctGuessCount = currentGuess.filter(letter => letter !== '?').length;
-        let index = guessedLetters.length - correctGuessCount;
-        if (index >= this.imagePaths.length) {
-          index = this.imagePaths.length - 1;
-        }
-
-        return this.imagePaths[index];
+        return guessedLetters.length - correctGuessCount;
+    }));
+    this.wrongGuessMessage$ = this.wrongGuessCount$.pipe(map((wrongGuessCount) => {
+      if (wrongGuessCount === 0) {
+        return '';
+      }
+      return `Wrong guesses: ${wrongGuessCount}`;
+    }));
+    this.currentImagePath$ = this.wrongGuessCount$.pipe(map((wrongGuessCount) => {
+      if (wrongGuessCount >= this.imagePaths.length) {
+        wrongGuessCount = this.imagePaths.length - 1;
+      }
+      return this.imagePaths[wrongGuessCount];
     }));
   }
 }
