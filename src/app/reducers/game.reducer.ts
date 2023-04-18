@@ -14,7 +14,7 @@ export const initialState: GameState = {
 export const gameReducer = createReducer(
   initialState,
   on(newGame, (state) => {
-    const newWord = getNewWord();
+    const newWord = getNewWord(initialState.targetWord);
     return {
       guessedLetters: initialState.guessedLetters,
       targetWord: newWord,
@@ -69,8 +69,12 @@ const updateGuess = (currentGuess: string[], guessedLetter: string, target: stri
   }
 };
 
-const getNewWord = () => {
-  const index = Math.round(Math.random() * wordData.length);
-  return wordData[index].toUpperCase();
+const getNewWord = (currentWord: string) => {
+  let newWord;
+  do {
+    const index = Math.round(Math.random() * wordData.length);
+    newWord = wordData[index];
+  } while (newWord === currentWord);
+  return newWord.toUpperCase();
 };
 const getInitialGuessForNewWord = (newWord: string) => new Array(newWord.length).fill('?');
