@@ -1,9 +1,11 @@
-<mat-list>
-  <mat-list-item>
-    <button mat-raised-button (click)="onNewGameClicked()">New Game</button>
-  </mat-list-item>
-  <mat-list-item>
-    <button mat-raised-button (click)="onPauseClicked()">{{ pauseLabel$ | async}}</button>
-  </mat-list-item>
-</mat-list>
-
+<div class="ngrx-hangman__control-panel-wrapper">
+  <button mat-fab extended (click)="onNewGameClicked()">
+    <mat-icon>replay</mat-icon>
+    New Game
+  </button>
+  <button mat-fab extended (click)="onPauseClicked()">
+    <mat-icon *ngIf="!(isPaused$ | async)">pause</mat-icon>
+    <mat-icon *ngIf="(isPaused$ | async)">play_arrow</mat-icon>
+    {{ pauseLabel$ | async}}
+  </button>
+</div>
