@@ -20,7 +20,7 @@ export const gameReducer = createReducer(
       targetWord: newWord,
       currentGuess: getInitialGuessForNewWord(newWord),
       currentTime: initialState.currentTime,
-      isPaused: initialState.isPaused
+      isPaused: false
     };
   }),
   on(guessLetter, (state, action) => {
